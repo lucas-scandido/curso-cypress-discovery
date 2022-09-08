@@ -1,12 +1,14 @@
+import HomePage from '../page-objects/HomePage'
+
 describe('Home Page', () => {
     it('Home Page Validation', () => {
-        cy.visit('https://buger-eats.vercel.app/')
-    
-        const homePageMessage = 'Seja um parceiro entregador pela Buger Eats'
-        cy.contains(homePageMessage).should('be.visible')
 
-        //cy.get('a').click()
-        cy.get('a').should('be.visible')
+        var homePage = new HomePage()
+
+        homePage.go()
+        const homePageMessage = 'Seja um parceiro entregador pela Buger Eats'
+        homePage.welcomeMessage(homePageMessage)
+        homePage.buttonSignUp()
 
     })
 
