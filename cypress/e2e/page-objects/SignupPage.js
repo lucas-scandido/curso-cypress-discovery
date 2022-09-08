@@ -1,7 +1,7 @@
 class SignUpPage{
 
     go() {
-        cy.visit('https://buger-eats.vercel.app/deliver')
+        cy.visit('/deliver')
         cy.get('h1').should('be.visible')   
     }
 
@@ -39,4 +39,4 @@ class SignUpPage{
 
 }
 
-export default SignUpPage;
+export default new SignUpPage;

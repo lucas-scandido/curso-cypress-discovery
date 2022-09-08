@@ -1,6 +1,7 @@
-import SignUpPage from '../page-objects/SignupPage'
+import signup from '../page-objects/SignupPage'
 
 describe('Deliveryman SignUp', () => {
+
     it('Data fill', () => {
         //Test mass for filling in the deliveryman person's data
         var deliveryMan = {
@@ -18,8 +19,6 @@ describe('Deliveryman SignUp', () => {
             }
  
         }
-
-        var signup = new SignUpPage()
 
         signup.go()
         signup.fillForm(deliveryMan)

@@ -1,7 +1,7 @@
 class HomePage{
 
     go() {
-        cy.visit('https://buger-eats.vercel.app/')
+        cy.visit('/')
     }
 
     welcomeMessage(homePageMessage){
@@ -14,4 +14,4 @@ class HomePage{
 
 }
 
-export default HomePage;
+export default new HomePage;

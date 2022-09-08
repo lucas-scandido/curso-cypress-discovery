@@ -1,7 +1,7 @@
 class InvalidSignUpPage{
 
     go() {
-        cy.visit('https://buger-eats.vercel.app/deliver')
+        cy.visit('/deliver')
         cy.get('h1').should('be.visible')   
     }
 
@@ -50,4 +50,4 @@ class InvalidSignUpPage{
 
 }
 
-export default InvalidSignUpPage;
+export default new InvalidSignUpPage;

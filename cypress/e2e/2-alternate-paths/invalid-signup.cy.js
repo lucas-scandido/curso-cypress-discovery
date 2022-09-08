@@ -1,6 +1,7 @@
-import InvalidSignupPage from '../page-objects/InvalidSignupPage' 
+import invalidSignupPage from '../page-objects/InvalidSignupPage' 
 
 describe('Invalid Deliveryman SignUp', () => {
+
     it('Data fill with invalid Document', () => {
 
         //Test mass for filling in the deliveryman person's data
@@ -20,8 +21,6 @@ describe('Invalid Deliveryman SignUp', () => {
  
         }
 
-        var invalidSignupPage = new InvalidSignupPage()
-
         invalidSignupPage.go()
         invalidSignupPage.fillForm(deliveryMan)
         invalidSignupPage.submit()
@@ -31,8 +30,6 @@ describe('Invalid Deliveryman SignUp', () => {
     })
 
     it('Signup without fill the fields', () => {
-
-        var invalidSignupPage = new InvalidSignupPage()
 
         invalidSignupPage.go()
         invalidSignupPage.submit()
