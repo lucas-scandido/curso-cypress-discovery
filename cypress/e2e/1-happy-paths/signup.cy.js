@@ -10,7 +10,7 @@ describe('Deliveryman SignUp', () => {
     //     })
     // })
 
-    it('Data fill', function () {
+    it('Filling with Valid Data', function () {
 
         var deliveryMan = SignupFactory.deliveryMan()
 
@@ -18,7 +18,7 @@ describe('Deliveryman SignUp', () => {
         SignupPage.go()
         SignupPage.fillForm(deliveryMan)
         SignupPage.submit()
-        const signupSuccessMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
+        const signupSuccessMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contatA.'
         SignupPage.modalContentShouldBe(signupSuccessMessage)
         
     })

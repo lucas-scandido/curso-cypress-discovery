@@ -1,4 +1,4 @@
-import InvalidSignupPage from '../page-objects/InvalidSignupPage' 
+import InvalidSignupPage from '../page-objects/InvalidSignupPage'
 import SignupFactory from '../factories/SignupFactory'
 
 describe('Invalid Deliveryman SignUp', () => {
@@ -38,20 +38,27 @@ describe('Invalid Deliveryman SignUp', () => {
 
     })
 
-    it('Signup without fill the fields', function () {
+    context('Checking Required Fields', function () {
+        const messages = [
+            { field: 'name', output: 'É necessário informar o nome' },
+            { field: 'document', output: 'É necessário informar o CPF' },
+            { field: 'email', output: 'É necessário informar o email' },
+            { field: 'postalCode', output: 'É necessário informar o CEP' },
+            { field: 'addressName', output: 'É necessário informar o número do endereço' },
+            { field: 'deliveryMethod', output: 'Selecione o método de entrega' },
+            { field: 'driveLicense', output: 'Adicione uma foto da sua CNH' }
+        ]
 
-        InvalidSignupPage.go()
-        InvalidSignupPage.submit()
-        const expectedMessage = {
-            messageName: 'É necessário informar o nome',
-            messageDocument: 'É necessário informar o CPF',
-            messageEmail: 'É necessário informar o email',
-            messagePostalCode: 'É necessário informar o CEP',
-            messageAddressNumber: 'É necessário informar o número do endereço',
-            messageDeliveryMethod: 'Selecione o método de entrega',
-            messageDrivingLicense: 'Adicione uma foto da sua CNH'
-        }
-        InvalidSignupPage.alertMessageError(expectedMessage)
+        before(function () {
+            InvalidSignupPage.go()
+            InvalidSignupPage.submit()
+        })
+
+        messages.forEach(function (msg) {
+            it(`${msg.field} is required`, function () {
+                InvalidSignupPage.alertMessageShouldBe(msg.output)
+            })
+        })
 
     })
 
