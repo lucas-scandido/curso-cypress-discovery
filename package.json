@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "cypress": "^10.7.0"
+    "cypress": "^10.7.0",
+    "gerador-validador-cpf": "^5.0.2"
   },
   "devDependencies": {
     "cypress-file-upload": "^5.0.8",

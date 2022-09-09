@@ -1,5 +1,5 @@
-import invalidSignupPage from '../page-objects/InvalidSignupPage' 
-import signupFactory from '../factories/SignupFactory'
+import InvalidSignupPage from '../page-objects/InvalidSignupPage' 
+import SignupFactory from '../factories/SignupFactory'
 
 describe('Invalid Deliveryman SignUp', () => {
 
@@ -12,36 +12,36 @@ describe('Invalid Deliveryman SignUp', () => {
 
     it('Data fill with invalid Document', function () {
 
-        var deliveryMan = signupFactory.deliveryMan()
+        var deliveryMan = SignupFactory.deliveryMan()
         deliveryMan.document = '101088678aa'
 
         //Test mass for invalid filling in the deliveryman person's data
-        invalidSignupPage.go()
-        invalidSignupPage.fillForm(deliveryMan)
-        invalidSignupPage.submit()
+        InvalidSignupPage.go()
+        InvalidSignupPage.fillForm(deliveryMan)
+        InvalidSignupPage.submit()
         const alertMessage = 'Oops! CPF inválido'
-        invalidSignupPage.alertMessageShouldBe(alertMessage)
+        InvalidSignupPage.alertMessageShouldBe(alertMessage)
 
     })
 
     it('Data fill with invalid Email', function () {
 
-        var deliveryMan = signupFactory.deliveryMan()
+        var deliveryMan = SignupFactory.deliveryMan()
         deliveryMan.email = 'teste.com.br'
 
         //Test mass for invalid filling in the deliveryman person's data
-        invalidSignupPage.go()
-        invalidSignupPage.fillForm(deliveryMan)
-        invalidSignupPage.submit()
+        InvalidSignupPage.go()
+        InvalidSignupPage.fillForm(deliveryMan)
+        InvalidSignupPage.submit()
         const alertMessage = 'Oops! Email com formato inválido.'
-        invalidSignupPage.alertMessageShouldBe(alertMessage)
+        InvalidSignupPage.alertMessageShouldBe(alertMessage)
 
     })
 
     it('Signup without fill the fields', function () {
 
-        invalidSignupPage.go()
-        invalidSignupPage.submit()
+        InvalidSignupPage.go()
+        InvalidSignupPage.submit()
         const expectedMessage = {
             messageName: 'É necessário informar o nome',
             messageDocument: 'É necessário informar o CPF',
@@ -51,7 +51,7 @@ describe('Invalid Deliveryman SignUp', () => {
             messageDeliveryMethod: 'Selecione o método de entrega',
             messageDrivingLicense: 'Adicione uma foto da sua CNH'
         }
-        invalidSignupPage.alertMessageError(expectedMessage)
+        InvalidSignupPage.alertMessageError(expectedMessage)
 
     })
 
