@@ -32,8 +32,8 @@ class InvalidSignUpPage{
         cy.get('.button-success').click()
     }
 
-    alertDocumentError(invalidDocument) {
-        cy.get('.alert-error').should('have.text', invalidDocument)
+    alertMessageShouldBe(alertMessage) {
+        cy.get('.alert-error').should('have.text', alertMessage)
 
     }
 

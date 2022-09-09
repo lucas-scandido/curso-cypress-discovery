@@ -2,34 +2,33 @@ import invalidSignupPage from '../page-objects/InvalidSignupPage'
 
 describe('Invalid Deliveryman SignUp', () => {
 
-    it('Data fill with invalid Document', () => {
+    beforeEach(function () {
+        cy.fixture('deliveryMan').then((d) => {
+            this.deliveryMan = d
+        })
+    })
 
-        //Test mass for filling in the deliveryman person's data
-        var deliveryMan = {
-            name: 'Lucas S Candido',
-            document: '909888777AA',
-            email: 'email.test@outlook.com',
-            phone: '43998899898',
-            address: {
-                postalCode: '21011020',
-                addressName: 'Rua da Batata',
-                addressNumber: '868',
-                addrresLine: 'Casa',
-                addressDistrict: 'Penha Circular',
-                addressCity: 'Rio de Janeiro/RJ' 
-            }
- 
-        }
-
+    it('Data fill with invalid Document', function () {
+        //Test mass for invalid filling in the deliveryman person's data
         invalidSignupPage.go()
-        invalidSignupPage.fillForm(deliveryMan)
+        invalidSignupPage.fillForm(this.deliveryMan.invalidDocument)
         invalidSignupPage.submit()
-        const invalidDocument = 'Oops! CPF inválido'
-        invalidSignupPage.alertDocumentError(invalidDocument)
+        const alertMessage = 'Oops! CPF inválido'
+        invalidSignupPage.alertMessageShouldBe(alertMessage)
 
     })
 
-    it('Signup without fill the fields', () => {
+    it('Data fill with invalid Email', function () {
+        //Test mass for invalid filling in the deliveryman person's data
+        invalidSignupPage.go()
+        invalidSignupPage.fillForm(this.deliveryMan.invalidEmail)
+        invalidSignupPage.submit()
+        const alertMessage = 'Oops! Email com formato inválido.'
+        invalidSignupPage.alertMessageShouldBe(alertMessage)
+
+    })
+
+    it('Signup without fill the fields', function () {
 
         invalidSignupPage.go()
         invalidSignupPage.submit()
