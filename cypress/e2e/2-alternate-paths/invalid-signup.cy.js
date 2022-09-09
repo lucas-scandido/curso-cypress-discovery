@@ -1,17 +1,23 @@
 import invalidSignupPage from '../page-objects/InvalidSignupPage' 
+import signupFactory from '../factories/SignupFactory'
 
 describe('Invalid Deliveryman SignUp', () => {
 
-    beforeEach(function () {
-        cy.fixture('deliveryMan').then((d) => {
-            this.deliveryMan = d
-        })
-    })
+    // Não é mais necessário o uso do beforeEach, pois não vai ser utilziado mais a fixture e sim a library fake para gerar a massa de testes randomicamente.
+    // beforeEach(function () {
+    //     cy.fixture('deliveryMan').then((d) => {
+    //         this.deliveryMan = d
+    //     })
+    // })
 
     it('Data fill with invalid Document', function () {
+
+        var deliveryMan = signupFactory.deliveryMan()
+        deliveryMan.document = '101088678aa'
+
         //Test mass for invalid filling in the deliveryman person's data
         invalidSignupPage.go()
-        invalidSignupPage.fillForm(this.deliveryMan.invalidDocument)
+        invalidSignupPage.fillForm(deliveryMan)
         invalidSignupPage.submit()
         const alertMessage = 'Oops! CPF inválido'
         invalidSignupPage.alertMessageShouldBe(alertMessage)
@@ -19,9 +25,13 @@ describe('Invalid Deliveryman SignUp', () => {
     })
 
     it('Data fill with invalid Email', function () {
+
+        var deliveryMan = signupFactory.deliveryMan()
+        deliveryMan.email = 'teste.com.br'
+
         //Test mass for invalid filling in the deliveryman person's data
         invalidSignupPage.go()
-        invalidSignupPage.fillForm(this.deliveryMan.invalidEmail)
+        invalidSignupPage.fillForm(deliveryMan)
         invalidSignupPage.submit()
         const alertMessage = 'Oops! Email com formato inválido.'
         invalidSignupPage.alertMessageShouldBe(alertMessage)
